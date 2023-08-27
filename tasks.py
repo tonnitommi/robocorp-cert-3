@@ -18,6 +18,7 @@ def produce_traffic_data():
     output_folder = os.environ.get('ROBOT_ARTIFACTS', os.path.join(os.path.abspath(os.curdir), "output"))
     output_path = output_folder + "/" + filename
 
+    # Using RPA lib here, as the robocorp.http is not fully featured yet...
     http.download("https://github.com/robocorp/inhuman-insurance-inc/raw/main/RS_198.json", output_path, overwrite=True)
 
     data = _load_json(output_path)
@@ -82,6 +83,7 @@ def _validate_work_item(payload):
         return False
     else:
         return True
+
 
 def _post_to_system(data):
     url = "https://robocorp.com/inhuman-insurance-inc/sales-system-api"
